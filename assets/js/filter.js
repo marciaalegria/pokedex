@@ -82,31 +82,24 @@ function limpiar(){
 
 function grafico(){
     
-    var options =  {
-        title:{
-            text: "Top Oil Reserves"
+    var options = {
+        title: {
+            text: "Column Chart in jQuery CanvasJS"              
         },
-        axisY: {
-            title: "Reserves(MMbbl)"
-        },
-        data: [
-            {        
-            type: "column",  
-            showInLegend: true, 
-            legendMarkerColor: "grey",
-            legendText: "MMbbl = one million barrels",
-            dataPoints: [      
-                { y: 300878, label: "Venezuela" },
-                { y: 266455,  label: "Saudi" },
-                { y: 169709,  label: "Canada" },
-                { y: 158400,  label: "Iran" },
-                { y: 142503,  label: "Iraq" },
-                { y: 101500, label: "Kuwait" },
-                { y: 97800,  label: "UAE" },
-                { y: 80000,  label: "Russia" }
+        data: [              
+        {
+            // Change type to "doughnut", "line", "splineArea", etc.
+            type: "column",
+            dataPoints: [
+                { label: "apple",  y: 10  },
+                { label: "orange", y: 15  },
+                { label: "banana", y: 25  },
+                { label: "mango",  y: 30  },
+                { label: "grape",  y: 28  }
             ]
         }
-    ]
-};
+        ]
+    };
+    
     $("#grafico").CanvasJSChart(options);
 }
