@@ -24,6 +24,7 @@ function getpoke(id){
     success: function (response) {
         console.log(response);
         $("#card").append(impCard(response));
+        grafico();
     }
 });
 }
@@ -79,3 +80,33 @@ function limpiar(){
     $("#poke").focus();
 }
 
+function grafico(){
+    
+    var options =  {
+        title:{
+            text: "Top Oil Reserves"
+        },
+        axisY: {
+            title: "Reserves(MMbbl)"
+        },
+        data: [
+            {        
+            type: "column",  
+            showInLegend: true, 
+            legendMarkerColor: "grey",
+            legendText: "MMbbl = one million barrels",
+            dataPoints: [      
+                { y: 300878, label: "Venezuela" },
+                { y: 266455,  label: "Saudi" },
+                { y: 169709,  label: "Canada" },
+                { y: 158400,  label: "Iran" },
+                { y: 142503,  label: "Iraq" },
+                { y: 101500, label: "Kuwait" },
+                { y: 97800,  label: "UAE" },
+                { y: 80000,  label: "Russia" }
+            ]
+        }
+    ]
+};
+    $("#grafico").CanvasJSChart(options);
+}
