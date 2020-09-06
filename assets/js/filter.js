@@ -1,4 +1,5 @@
 $(function(){
+    start();
     $("#buscar").click( e=>{ 
         findpoke();
         
@@ -33,19 +34,19 @@ function impCard(nombre){
  var card= `
     <div class="col-sm-12 col-md-4">
         <div class="card" style="width: 75%;">
-            <img class="card-img-top img-fluid" src="${nombre.sprites.front_shiny}" alt="img.pokemón">
             <div class="card-body">
                 <h5 class="card-title">${nombre.name}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Habilidad: ${nombre.abilities[0].ability.name}, ${nombre.abilities[1].ability.name}</p>
             </div>
+            <img class="card-img-top img-rounded" src="${nombre.sprites.front_shiny}" alt="img.pokemón" width="150" height="300">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item">Altura: ${nombre.height} cm.</li>
+                <li class="list-group-item">Peso: ${nombre.weight} gr. </li>
+                <li class="list-group-item">Experiencia base: ${nombre.base_experience}</li>
+                
             </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+            <div id="graf"class="card-body" style= "height: 150px; width: 90%; margin: 0 auto;">
+                
             </div>
         </div>
     </div>
@@ -80,7 +81,21 @@ function limpiar(){
     $("#poke").focus();
 }
 
-function grafico(){
+function getStats(x, y){
+    $.ajax({
+        type: "GET",
+        url: ` https://pokeapi.co/api/v2/stat/${id}/`,
+        success: function (response) {
+            console.log(response);
+        }
+    });
+   
+}
+
+function start(){
+    getStats();
+}
+function grafico(pokemones){
     
     var options = {
         title: {
@@ -101,5 +116,6 @@ function grafico(){
         ]
     };
     
-    $("#grafico").CanvasJSChart(options);
+    $("#graf").CanvasJSChart(options);
 }
+console.log(getStats);
